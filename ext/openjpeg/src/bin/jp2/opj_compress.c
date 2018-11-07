@@ -47,6 +47,18 @@
 
 #ifdef _WIN32
 #include "windirent.h"
+#elif defined(__ORBIS__)
+#include <sys/time.h>
+typedef struct DIR DIR;
+typedef struct dirent
+{
+    char const * d_name;
+};
+typedef struct rusage
+{
+    struct timeval ru_utime;
+    struct timeval ru_stime;
+};
 #else
 #include <dirent.h>
 #endif /* _WIN32 */
@@ -55,6 +67,7 @@
 #include <windows.h>
 #define strcasecmp _stricmp
 #define strncasecmp _strnicmp
+#elif defined(__ORBIS__)
 #else
 #include <strings.h>
 #include <sys/time.h>

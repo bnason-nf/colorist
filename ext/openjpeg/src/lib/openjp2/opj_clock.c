@@ -33,6 +33,7 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#elif defined(__ORBIS__)
 #else
 #include <sys/time.h>
 #include <sys/resource.h>
@@ -50,6 +51,8 @@ OPJ_FLOAT64 opj_clock(void)
     /* t is the high resolution performance counter (see MSDN) */
     QueryPerformanceCounter(& t) ;
     return ((OPJ_FLOAT64) t.QuadPart / (OPJ_FLOAT64) freq.QuadPart) ;
+#elif defined(__ORBIS__)
+    return 0.0;
 #else
     /* Unix or Linux: use resource usage */
     struct rusage t;

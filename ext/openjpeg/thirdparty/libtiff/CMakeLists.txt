@@ -60,6 +60,7 @@ if(UNIX)
   # AC_SYS_LARGEFILE.
   add_definitions(-D_FILE_OFFSET_BITS=64)
   set(_FILE_OFFSET_BITS 64)
+elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "PS4")
 else()
   set(TARGET_FILES ${TARGET_FILES} tif_win32.c)
 endif()
